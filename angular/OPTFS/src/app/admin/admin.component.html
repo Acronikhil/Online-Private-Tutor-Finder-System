@@ -1,0 +1,251 @@
+<section class="container">
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-success">Admin Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-2">
+            <a class="btn btn-outline-primary" [ngClass]="{active: manageUser}" (click)="toggleManageUser()" aria-current="page">Manage Users</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="btn btn-outline-primary" [ngClass]="{active: manageTutor}" (click)="toggleManageTutor()">Manage Tutors</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <ng-container *ngIf="manageUser">
+    <div class="card my-4 border-primary">
+      <div class="card-header border-primary">
+        <span class="text-center">
+          <h3 class="my-2">Manage Users</h3>
+        </span>
+      </div>
+      <div class="card-body border-success">
+
+        <table class="table border-success">
+          <thead>
+            <tr>
+              <th class="text-center text-capitalize">userId</th>
+              <th class="text-center text-capitalize ">email</th>
+              <th class="text-center text-capitalize ">firstName</th>
+              <th class="text-center text-capitalize ">lastName</th>
+              <th class="text-center text-capitalize ">phoneNo</th>
+              <!-- <th>password</th> -->
+              <th class="text-center text-capitalize ">admin</th>
+              <th class="text-center text-capitalize ">parent</th>
+              <th class="text-center text-capitalize ">tutor</th>
+              <th class="text-center text-capitalize ">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of allUsers">
+              <td class="text-capitalize text-center">{{user.userId}}</td>
+              <td class="text-center">{{user.email}}</td>
+              <td class="text-capitalize text-center">{{user.firstName}}</td>
+              <td class="text-capitalize  text-center">{{user.lastName}}</td>
+              <td class="text-capitalize text-center">{{user.phoneNo}}</td>
+              <!-- <td class="text-capitalize">{{user.password}}</td> -->
+              <td class="text-capitalize text-center">{{user.admin}}</td>
+              <td class="text-capitalize text-center">{{user.parent}}</td>
+              <td class="text-capitalize text-center">{{user.tutor}}</td>
+              <td>
+                <button type="button" class="btn btn-success mx-3" (click)="editMe(user)"> <span><i class="fa fa-pencil"
+                      style="margin-right: 5px;" aria-hidden="true"></i></span> Edit</button>
+                <button type="button" class="btn btn-danger"> <span><i class="fa fa-trash-o" style="margin-right: 5px;"
+                      aria-hidden="true"></i></span> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="card-footer border-primary ">
+        <span class="text-center">
+          <h3 class="my-2">Edit User Details</h3>
+        </span>
+        <form class="bg-light text-dark p-lg-4 form-inline">
+          <div class="form-group">
+            <label cla for="firstName">User Id</label>
+            <input type="text" name="userId" id="userId" class="form-control" placeholder="" [value]="userToEdit.userId"
+              aria-describedby="helpId" readonly>
+          </div>
+
+          <div class="form-group">
+            <label cla for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" class="form-control" placeholder=""
+              [value]="userToEdit.firstName" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.lastName" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="email"> Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.email" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="phoneNo">Phone No</label>
+            <input type="text" name="phoneNo" id="phoneNo" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.phoneNo" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isAdmin" id="isAdmin"
+                  [(ngModel)]="userToEdit.admin" />
+                Is Admin
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isParent" id="isParent"
+                  [(ngModel)]="userToEdit.parent" />
+                Is Parent
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isTutor" id="isTutor"
+                  [(ngModel)]="userToEdit.tutor" />
+                Is Tutor
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="button" class="btn btn-primary" (click)="editUser()" >Submit</button>
+          </div>
+
+
+        </form>
+
+
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="manageTutor">
+    <div class="card my-4 border-primary">
+      <div class="card-header border-primary">
+        <span class="text-center">
+          <h3 class="my-2">Manage Tutors</h3>
+        </span>
+      </div>
+      <div class="card-body border-success">
+
+        <table class="table border-success">
+          <thead>
+            <tr>
+              <th class="text-center text-capitalize">userId</th>
+              <th class="text-center text-capitalize ">email</th>
+              <th class="text-center text-capitalize ">firstName</th>
+              <th class="text-center text-capitalize ">lastName</th>
+              <th class="text-center text-capitalize ">phoneNo</th>
+              <!-- <th>password</th> -->
+              <th class="text-center text-capitalize ">admin</th>
+              <th class="text-center text-capitalize ">parent</th>
+              <th class="text-center text-capitalize ">tutor</th>
+              <th class="text-center text-capitalize ">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of allTutors">
+              <td class="text-capitalize text-center">{{user.userId}}</td>
+              <td class="text-center">{{user.email}}</td>
+              <td class="text-capitalize text-center">{{user.firstName}}</td>
+              <td class="text-capitalize  text-center">{{user.lastName}}</td>
+              <td class="text-capitalize text-center">{{user.phoneNo}}</td>
+              <td class="text-capitalize text-center">{{user.admin}}</td>
+              <td class="text-capitalize text-center">{{user.parent}}</td>
+              <td class="text-capitalize text-center">{{user.tutor}}</td>
+              <td>
+                <button type="button" class="btn btn-success mx-3" (click)="editMe(user)"> <span><i class="fa fa-pencil"
+                      style="margin-right: 5px;" aria-hidden="true"></i></span> Edit</button>
+                <button type="button" class="btn btn-danger"> <span><i class="fa fa-trash-o" style="margin-right: 5px;"
+                      aria-hidden="true"></i></span> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="card-footer border-primary ">
+        <span class="text-center">
+          <h3 class="my-2">Edit User Details</h3>
+        </span>
+        <form class="bg-light text-dark p-lg-4 form-inline">
+          <div class="form-group">
+            <label cla for="firstName">User Id</label>
+            <input type="text" name="userId" id="userId" class="form-control" placeholder="" [value]="userToEdit.userId"
+              aria-describedby="helpId" readonly>
+          </div>
+
+          <div class="form-group">
+            <label cla for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" class="form-control" placeholder=""
+              [value]="userToEdit.firstName" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.lastName" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="email"> Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.email" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <label cla for="phoneNo">Phone No</label>
+            <input type="text" name="phoneNo" id="phoneNo" class="form-control" placeholder=""
+              [(ngModel)]="userToEdit.phoneNo" aria-describedby="helpId">
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isAdmin" id="isAdmin"
+                  [(ngModel)]="userToEdit.admin" />
+                Is Admin
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isParent" id="isParent"
+                  [(ngModel)]="userToEdit.parent" />
+                Is Parent
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="isTutor" id="isTutor"
+                  [(ngModel)]="userToEdit.tutor" />
+                Is Tutor
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+
+
+        </form>
+
+
+      </div>
+    </div>
+  </ng-container>
+
+</section>
