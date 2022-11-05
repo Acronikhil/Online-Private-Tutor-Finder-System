@@ -21,6 +21,9 @@ public class ParentServiceImpl implements ParentService {
 				|| parent.getPassword().isEmpty()) {
 			throw new NullUserFound("Error: Null value is not accepted.");
 		}
+		else if (parent.getFirstName().equals("string") || parent.getLastName().equals("string") || parent.getPassword().equals("string") || parent.getEmail().equals("string") ) {
+			throw new NullUserFound("Error: Null value is not accepted.");
+		}
 		return parentRepository.save(parent);
 	}
 
@@ -31,9 +34,34 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	@Override
-	public Parent getParentById(Integer pid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Parent getParentById(Integer pid) throws NullUserFound {
+		if(pid == 0) {
+			throw new NullUserFound("Null value is not excepted");
+		}
+		
+		return parentRepository.getParentById(pid) ;
+	}
+
+	@Override
+	public Parent updateParent(Parent parent) throws NullUserFound {
+		Parent p =  getParentById(parent.getId());
+		
+		if(p == null) {
+			throw new NullUserFound("No Parent Exixts with same this id: "+ parent.getId());
+		}
+		
+		return parentRepository.save(parent);
+	}
+
+	@Override
+	public String deleteParent(Parent parent) throws NullUserFound {
+Parent p =  getParentById(parent.getId());
+		
+		if(p == null) {
+			throw new NullUserFound("No Parent Exixts with same this id: "+ parent.getId());
+		}
+		parentRepository.delete(p);
+		return "Parent Deleted Successfully";
 	}
 
 }

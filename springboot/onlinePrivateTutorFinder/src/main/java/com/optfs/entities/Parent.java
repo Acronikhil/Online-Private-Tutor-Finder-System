@@ -12,7 +12,7 @@ public class Parent {
 
 	@Id
 	@GeneratedValue
-	private Integer parentId;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -27,19 +27,19 @@ public class Parent {
 
 	public Parent(Integer parentId, String firstName, String lastName, String email, String password) {
 		super();
-		this.parentId = parentId;
+		this.id = parentId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
 
-	public Integer getParentId() {
-		return parentId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
+	public void setId(Integer parentId) {
+		this.id = parentId;
 	}
 
 	public String getFirstName() {
@@ -76,7 +76,7 @@ public class Parent {
 
 	@Override
 	public String toString() {
-		return "Parent [parentId=" + parentId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+		return "Parent [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", password=" + password + "]";
 	}
 

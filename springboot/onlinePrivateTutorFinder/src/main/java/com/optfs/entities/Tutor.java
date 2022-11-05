@@ -12,7 +12,7 @@ public class Tutor {
 
 	@Id
 	@GeneratedValue
-	private Integer tutorId;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -33,7 +33,7 @@ public class Tutor {
 	public Tutor(Integer tutorId, String firstName, String lastName, String email, String password, String subject,
 			Integer rating, boolean isAvailable) {
 		super();
-		this.tutorId = tutorId;
+		this.id = tutorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -45,14 +45,14 @@ public class Tutor {
 
 
 
-	public Integer getTutorId() {
-		return tutorId;
+	public Integer getId() {
+		return id;
 	}
 
 
 
-	public void setTutorId(Integer tutorId) {
-		this.tutorId = tutorId;
+	public void setId(Integer tutorId) {
+		this.id = tutorId;
 	}
 
 
@@ -143,7 +143,7 @@ public class Tutor {
 
 	@Override
 	public String toString() {
-		return "Tutor [tutorId=" + tutorId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+		return "Tutor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", subject=" + subject + ", rating=" + rating + ", isAvailable="
 				+ isAvailable + "]";
 	}

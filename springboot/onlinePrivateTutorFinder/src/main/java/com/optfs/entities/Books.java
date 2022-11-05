@@ -18,7 +18,7 @@ public class Books {
 
 	@Id
 	@GeneratedValue
-	private Integer bookId;
+	private Integer id;
 
 	private String bookName;
 	private String authorName;
@@ -33,18 +33,18 @@ public class Books {
 
 	public Books(Integer bookId, String bookName, String authorName, Integer price) {
 		super();
-		this.bookId = bookId;
+		this.id = bookId;
 		this.bookName = bookName;
 		this.authorName = authorName;
 		this.price = price;
 	}
 
-	public Integer getBookId() {
-		return bookId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setBookId(Integer bookId) {
-		this.bookId = bookId;
+	public void setId(Integer bookId) {
+		this.id = bookId;
 	}
 
 	public String getBookName() {
@@ -73,7 +73,7 @@ public class Books {
 
 	@Override
 	public String toString() {
-		return "Books [bookId=" + bookId + ", bookName=" + bookName + ", authorName=" + authorName + ", price=" + price
+		return "Books [id=" + id + ", bookName=" + bookName + ", authorName=" + authorName + ", price=" + price
 				+ "]";
 	}
 

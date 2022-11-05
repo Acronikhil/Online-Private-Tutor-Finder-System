@@ -11,7 +11,7 @@ public class Admin {
 
 	@Id
 	@GeneratedValue
-	private Integer adminId;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -32,7 +32,7 @@ public class Admin {
 
 	public Admin(Integer adminId, String firstName, String lastName, String email, String password) {
 		super();
-		this.adminId = adminId;
+		this.id = adminId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -43,16 +43,16 @@ public class Admin {
 
 
 
-	public Integer getAdminId() {
-		return adminId;
+	public Integer getId() {
+		return id;
 	}
 
 
 
 
 
-	public void setAdminId(Integer adminId) {
-		this.adminId = adminId;
+	public void setId(Integer adminId) {
+		this.id = adminId;
 	}
 
 
@@ -125,7 +125,7 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [adminId=" + adminId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+		return "Admin [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + "]";
 	}
 
