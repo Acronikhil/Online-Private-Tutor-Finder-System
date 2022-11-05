@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.optfs.entities.Parent;
+import com.optfs.entities.Tutor;
 import com.optfs.exceptions.NullUserFound;
-import com.optfs.services.ParentService;
+import com.optfs.services.TutorService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/parent")
-public class ParentController {
+@RequestMapping("/tutor")
+public class TutorController {
 
 	@Autowired
-	ParentService parentService;
+	TutorService tutorService;
 	
 	
 	@GetMapping("/")
 	public String defaultMessage() {
-		return "Welcome to Parent controller";
+		return "Welcome to Tutor controller";
 	}
 	
-	@PostMapping("/registerParent")
-	public Parent registerParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.registerParent(parent);
+	@PostMapping("/registerTutor")
+	public Tutor registerTutor(@RequestBody Tutor tutor) throws NullUserFound {
+		return tutorService.registerTutor(tutor);
 	}
 	
-	@GetMapping("/allParents")
-	public List<Parent> getAllParents(){
-		return parentService.getAllParents();
+	@GetMapping("/allTutors")
+	public List<Tutor> getAllTutors(){
+		return tutorService.getAllTutors();
 	}
 	
-	@PostMapping("/updateParent")
-	public Parent updateParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.updateParent(parent);
+	@PostMapping("/updateTutor")
+	public Tutor updateTutor(@RequestBody Tutor tutor) throws NullUserFound {
+		return tutorService.updateTutor(tutor);
 	}
 	
 	@DeleteMapping("/deleteUser")
-	public String deleteParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.deleteParent(parent);
+	public String deleteTutor(@RequestBody Tutor tutor) throws NullUserFound {
+		return tutorService.deleteTutor(tutor);
 	}
 	
 }

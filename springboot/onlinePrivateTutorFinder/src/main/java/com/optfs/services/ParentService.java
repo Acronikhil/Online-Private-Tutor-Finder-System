@@ -11,5 +11,9 @@ public interface ParentService {
 	
 	public List<Parent> getAllParents();
 	
-	public Parent getParentById(Integer pid);
+	public Parent getParentById(Integer pid) throws NullUserFound;
+	
+	public Parent updateParent(Parent parent) throws NullUserFound;
+	
+	public String deleteParent(Parent parent) throws NullUserFound;
 }

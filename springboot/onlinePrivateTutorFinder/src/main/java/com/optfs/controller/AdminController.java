@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.optfs.entities.Parent;
+import com.optfs.entities.Admin;
 import com.optfs.exceptions.NullUserFound;
-import com.optfs.services.ParentService;
+import com.optfs.services.AdminService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/parent")
-public class ParentController {
+@RequestMapping("/admin")
+public class AdminController {
 
 	@Autowired
-	ParentService parentService;
+	AdminService adminService;
 	
 	
 	@GetMapping("/")
 	public String defaultMessage() {
-		return "Welcome to Parent controller";
+		return "Welcome to Admin controller";
 	}
 	
-	@PostMapping("/registerParent")
-	public Parent registerParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.registerParent(parent);
+	@PostMapping("/registerAdmin")
+	public Admin registerAdmin(@RequestBody Admin admin) throws NullUserFound {
+		return adminService.registerAdmin(admin);
 	}
 	
-	@GetMapping("/allParents")
-	public List<Parent> getAllParents(){
-		return parentService.getAllParents();
+	@GetMapping("/allAdmins")
+	public List<Admin> getAllAdmins(){
+		return adminService.getAllAdmins();
 	}
 	
-	@PostMapping("/updateParent")
-	public Parent updateParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.updateParent(parent);
+	@PostMapping("/updateAdmin")
+	public Admin updateAdmin(@RequestBody Admin admin) throws NullUserFound {
+		return adminService.updateAdmin(admin);
 	}
 	
 	@DeleteMapping("/deleteUser")
-	public String deleteParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.deleteParent(parent);
+	public String deleteAdmin(@RequestBody Admin admin) throws NullUserFound {
+		return adminService.deleteAdmin(admin);
 	}
 	
 }

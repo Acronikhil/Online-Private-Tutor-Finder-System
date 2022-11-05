@@ -4,11 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.optfs.entities.Parent;
+import com.optfs.entities.Tutor;
 
-public interface ParentRepository extends JpaRepository<Parent, Integer> {
+public interface TutorRepository extends JpaRepository<Tutor, Integer> {
 	
-	@Query("from Parent p where p.id=:id")
-	public Parent getParentById(@Param(value="id")Integer id );
+	@Query("from Tutor p where p.id=:id")
+	public Tutor getTutorById(@Param(value="id")Integer id );
+	
 
 }

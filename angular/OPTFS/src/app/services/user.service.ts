@@ -16,6 +16,10 @@ export class UserService {
   errorMessage: any;
 
   linkHeader = "http://localhost:8089/";
+  parnetHeader = "parent/";
+  tutorHeader = "tutor/";
+  adminHeader = "admin/";
+  booksHeader = "books/";
 
   users: any;
 
@@ -48,15 +52,15 @@ export class UserService {
   getAllUsers() {
     // console.log(this.http.get("http://localhost:8089/allUsers").subscribe((data)=> console.log(data)));
 
-    return (this.http.get(`${this.linkHeader}allUsers`));
+    return (this.http.get(`${this.linkHeader + this.parnetHeader}allParents`));
   }
 
   getAllParents() {
-    return (this.http.get(`${this.linkHeader}allParents`));
+    return (this.http.get(`${this.linkHeader + this.parnetHeader}allParents`));
   }
 
   getAllTutors() {
-    return this.http.get(`${this.linkHeader}allTutors`);
+    return this.http.get(`${this.linkHeader + this.tutorHeader}allTutors`);
   }
 
   deleteUser(uId: number) {
@@ -66,7 +70,7 @@ export class UserService {
 
   addUser(user: User) {
 
-    let message = this.http.put(`${this.linkHeader}addUser`, user).subscribe();
+    let message = this.http.post(`${this.linkHeader + this.parnetHeader}registerParent`, user).subscribe();
     // setUser(user);
     console.log("MESSAGE: ", message);
 

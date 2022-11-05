@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.optfs.entities.Parent;
+import com.optfs.entities.Books;
 import com.optfs.exceptions.NullUserFound;
-import com.optfs.services.ParentService;
+import com.optfs.services.BookService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/parent")
-public class ParentController {
+@RequestMapping("/books")
+public class BooksController {
 
 	@Autowired
-	ParentService parentService;
+	BookService booksService;
 	
 	
 	@GetMapping("/")
 	public String defaultMessage() {
-		return "Welcome to Parent controller";
+		return "Welcome to Books controller";
 	}
 	
-	@PostMapping("/registerParent")
-	public Parent registerParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.registerParent(parent);
+	@PostMapping("/registerBooks")
+	public Books registerBooks(@RequestBody Books books) throws NullUserFound {
+		return booksService.registerBooks(books);
 	}
 	
-	@GetMapping("/allParents")
-	public List<Parent> getAllParents(){
-		return parentService.getAllParents();
+	@GetMapping("/allBookss")
+	public List<Books> getAllBookss(){
+		return booksService.getAllBookss();
 	}
 	
-	@PostMapping("/updateParent")
-	public Parent updateParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.updateParent(parent);
+	@PostMapping("/updateBooks")
+	public Books updateBooks(@RequestBody Books books) throws NullUserFound {
+		return booksService.updateBooks(books);
 	}
 	
 	@DeleteMapping("/deleteUser")
-	public String deleteParent(@RequestBody Parent parent) throws NullUserFound {
-		return parentService.deleteParent(parent);
+	public String deleteBooks(@RequestBody Books books) throws NullUserFound {
+		return booksService.deleteBooks(books);
 	}
 	
 }
