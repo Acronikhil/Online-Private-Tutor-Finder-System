@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   email = "";
   password = "";
 
-  constructor(private userService: UserService) {
+  constructor(public userService: UserService) {
     console.log("All user in login:", this.userService.getAllUsers());
 
   }
@@ -21,17 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    let user = this.userService.getUserByEmail(this.email);
-    console.log("`````````````", user);
 
-    if (user.length > 0) {
-      console.log(`Welcome ${user}`);
-
-    }
-    else {
-      console.log("not logged in");
-
-    }
+    this.userService.loginUser(this.email, this.password);
 
   }
 

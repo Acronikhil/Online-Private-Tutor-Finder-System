@@ -40,18 +40,18 @@ export class AdminComponent implements OnInit {
     this.manageUser = false;
   }
 
-  editUser(){
+  editUser() {
     let uId = this.userToEdit.userId;
     this.userService.deleteUser(uId).subscribe();
   }
 
+  deleteMe() {
+    let uId = this.userToEdit.userId;
+    console.log("Deleting User: ", this.userToEdit.firstName, uId);
 
-
-
-
-
-
-
+    this.userService.deleteUser(uId).subscribe();
+    this.ngOnInit();
+  }
 
   ngOnInit(): void {
 

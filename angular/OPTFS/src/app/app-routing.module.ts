@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:"admin", component: AdminComponent},
   {path:"tutor", component: TutorComponent},
   {path:"parent", component: ParentComponent},
+  
 ];
 
 @NgModule({

@@ -1,18 +1,7 @@
 <!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
 
-    <div class="text-center">
-        <h1 class="">
-            <ng-container>
-                <div class="btn btn-success text-capitalize " *ngIf="registered">
-                    {{message}}</div>
-            </ng-container>
-            <ng-container>
-                <div class="btn btn-danger text-capitalize" *ngIf="!registered">
-                    {{message}}</div>
-            </ng-container>
-        </h1>
-    </div>
+    
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div class="row gx-lg-5 align-items-center mb-5">
@@ -34,7 +23,20 @@
                 <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
                 <div class="card bg-glass">
+                    <div class="text-center">
+                        <h1 class="">
+                            <ng-container>
+                                <div class="btn btn-success text-capitalize " *ngIf="registered">
+                                    {{message}}</div>
+                            </ng-container>
+                            <ng-container>
+                                <div class="btn btn-danger text-capitalize" *ngIf="!registered">
+                                    {{message}}</div>
+                            </ng-container>
+                        </h1>
+                    </div>
                     <div class="card-body px-4 py-5 px-md-5">
+                        
                         <form>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row">
