@@ -1,6 +1,6 @@
 package com.optfs.exceptions;
 
-public class NullUserFound extends RuntimeException{
+public class NullUserFound extends Exception{
 
 	/**
 	 * 

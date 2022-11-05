@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.user = {
+      userId: 100,
       firstName: "",
       lastName: "",
       email: "",
@@ -41,7 +42,13 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     console.log(this.user, this.confirmPassword);
 
-    if (this.confirmPassword == this.user.password) {
+    if (this.user.firstName == "" && this.user.lastName == "" && this.user.password == "" && this.user.phoneNo == 0) {
+      this.registered = false;
+      this.message = "Error Cannot register please fill all fileds properly.";
+
+    }
+
+    else if (this.confirmPassword == this.user.password) {
       this.registered = true;
       this.message = `Congratulations ${this.user.firstName}, you are registered successfully.`;
       this.userService.addUser(this.user);

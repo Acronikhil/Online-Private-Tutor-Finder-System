@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-parent',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParentComponent implements OnInit {
 
-  constructor() { }
+  allTutors: any;
+
+  constructor(protected userService: UserService) {
+
+    this.userService.getAllTutors().subscribe((data) => {
+      this.allTutors = data;
+      console.log(data);
+
+    });
+
+    console.log("Contructing all Tutors: ", this.allTutors);
+
+
+  }
 
   ngOnInit(): void {
   }

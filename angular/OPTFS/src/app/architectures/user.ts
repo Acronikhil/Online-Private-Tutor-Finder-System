@@ -1,6 +1,7 @@
 import { last } from "rxjs";
 
 export interface User {
+    userId: number,
     firstName: string,
     lastName: string,
     email: string,
@@ -11,24 +12,16 @@ export interface User {
     isTutor: boolean,
 };
 
-export let Users: User[] = [{
-    firstName: "Nikhil",
-    lastName: "Dubey",
-    email: "20.nikhildubey@gmail.com",
-    password: "123",
-    phoneNo: 8962132378,
-    isAdmin: false,
-    isParent: true,
-    isTutor: false
-}, {
-    firstName: "Tony",
-    lastName: "Stark",
-    email: "stark@gmail.com",
-    password: "123",
-    phoneNo: 8962132378,
-    isAdmin: true,
-    isParent: false,
-    isTutor: false
-}];
+// export let Users: User[] = [{
+//     userId: 100,
+//     firstName: "Nikhil",
+//     lastName: "Dubey",
+//     email: "20.nikhildubey@gmail.com",
+//     password: "123",
+//     phoneNo: 8962132378,
+//     isAdmin: false,
+//     isParent: true,
+//     isTutor: false
+// }];
 
-export let setUser = (uList: User) => Users.concat(uList);
+// export let setUser = (uList: User) => Users.concat(uList);

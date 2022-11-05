@@ -1,6 +1,6 @@
 package com.optfs.exceptions;
 
-public class UserIdCannotBeNull extends RuntimeException{
+public class UserIdCannotBeNull extends Exception{
 
 	/**
 	 * 
