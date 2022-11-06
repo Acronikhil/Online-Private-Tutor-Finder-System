@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { WrappedNodeExpr } from '@angular/compiler';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { async, catchError, throwError } from 'rxjs';
 import { User } from '../architectures/user';
 
 @Injectable({
@@ -23,7 +24,17 @@ export class UserService {
 
   users: any;
 
+  allUsers: any = {};
+
+  parents: any;
+
   constructor(private http: HttpClient, private router: Router) {
+
+    this.allUsers = this.getAllUsers().subscribe((data) => {
+      this.allUsers = data;
+      console.warn(this.allUsers);
+
+    });
 
   }
 
@@ -52,7 +63,9 @@ export class UserService {
   getAllUsers() {
     // console.log(this.http.get("http://localhost:8089/allUsers").subscribe((data)=> console.log(data)));
 
-    return (this.http.get(`${this.linkHeader + this.parnetHeader}allParents`));
+
+
+    return (this.http.get(`http://localhost:8089/allUsers`));
   }
 
   getAllParents() {
@@ -63,6 +76,10 @@ export class UserService {
     return this.http.get(`${this.linkHeader + this.tutorHeader}allTutors`);
   }
 
+  getAllBooks() {
+    return this.http.get(`${this.linkHeader + this.booksHeader}allBookss`);
+  }
+
   deleteUser(uId: number) {
     return this.http.delete(`${this.linkHeader}deleteUser/${uId}`);
   }
@@ -71,6 +88,15 @@ export class UserService {
   addUser(user: User) {
 
     let message = this.http.post(`${this.linkHeader + this.parnetHeader}registerParent`, user).subscribe();
+    // setUser(user);
+    console.log("MESSAGE: ", message);
+
+
+  }
+
+  addTutor(user: User) {
+
+    let message = this.http.post(`${this.linkHeader + this.tutorHeader}registerTutor`, user).subscribe();
     // setUser(user);
     console.log("MESSAGE: ", message);
 
@@ -119,15 +145,98 @@ export class UserService {
 
   }
 
+
+  // Login Sevice
+
+
   loginUser(email: String, password: String) {
     let httpResponse = 0;
-    this.http.post(`${this.linkHeader}loginUser`, [email, password], { responseType: 'text', observe: 'response' }).pipe(catchError(this.handleError)).subscribe((data) => this.resp(data.status, email));
+    let credentials = [email, password];
 
-    console.log("++++++++++", httpResponse);
+
+    this.ngOnInit();
+
+
+    console.log("++++++++++", this.allUsers);
 
 
 
   }
+
+
+  // PARENT OPS
+
+  // UPDATE FUNCTIONALITY
+
+  updateParent(user: any) {
+
+    this.http.post(`${this.linkHeader}${this.parnetHeader}/updateParent`, user).subscribe();
+
+  }
+
+  deleteParent(user: any) {
+    console.log("User To Delete:", user);
+
+    this.http.delete(`${this.linkHeader}${this.parnetHeader}deleteParent`, { body: user }).subscribe();
+  }
+
+
+  updateTutor(user: any) {
+
+    this.http.post(`${this.linkHeader}${this.tutorHeader}/updateTutor`, user).subscribe();
+
+  }
+
+  addTutors(tutor: any) {
+
+    console.log("Tutor to add:", tutor);
+
+    this.http.post(`${this.linkHeader}${this.tutorHeader}registerTutor`, tutor).subscribe();
+
+
+  }
+
+  deleteTutor(user: any) {
+    console.log("Tutor To Delete:", user);
+
+    this.http.delete(`${this.linkHeader}${this.tutorHeader}deleteTutor`, { body: user }).subscribe();
+  }
+
+
+  addBook(book: any) {
+
+    console.log("Book to add:", book);
+
+    this.http.post(`${this.linkHeader}${this.booksHeader}registerBooks`, book).subscribe();
+
+
+  }
+
+
+  updateBook(user: any) {
+
+    this.http.post(`${this.linkHeader}${this.booksHeader}/updateBook`, user).subscribe();
+
+  }
+
+  deleteBook(user: any) {
+    console.log("Book To Delete:", user);
+
+    this.http.delete(`${this.linkHeader}${this.booksHeader}deleteBook`, { body: user }).subscribe();
+  }
+
+  ngOnInit(): void {
+    this.allUsers = this.getAllUsers().subscribe((data) => {
+      this.allUsers = data;
+      console.warn(this.allUsers);
+      this.allUsers = data;
+    });
+  }
+
+
+
+
+
 
 
 }

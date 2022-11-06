@@ -2,6 +2,7 @@ package com.optfs.services;
 
 import java.util.List;
 
+import com.optfs.entities.Admin;
 import com.optfs.entities.Tutor;
 import com.optfs.exceptions.NullUserFound;
 
@@ -16,6 +17,9 @@ public interface TutorService {
 	public Tutor updateTutor(Tutor tutor) throws NullUserFound;
 	
 	public String deleteTutor(Tutor tutor) throws NullUserFound;
+	
+	public Tutor loginTutor(String email, String password) throws NullUserFound;
+
 	
 	
 }

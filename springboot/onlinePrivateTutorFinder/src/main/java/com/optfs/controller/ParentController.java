@@ -44,9 +44,16 @@ public class ParentController {
 		return parentService.updateParent(parent);
 	}
 	
-	@DeleteMapping("/deleteUser")
+	@DeleteMapping("/deleteParent")
 	public String deleteParent(@RequestBody Parent parent) throws NullUserFound {
 		return parentService.deleteParent(parent);
 	}
 	
+	@GetMapping("/loginParent")
+	public Parent loginParent(@RequestBody List<String> credentials) throws NullUserFound
+	{
+		String email = credentials.get(0);
+		String password = credentials.get(1);
+		return parentService.loginParent(email, password);
+	}
 }

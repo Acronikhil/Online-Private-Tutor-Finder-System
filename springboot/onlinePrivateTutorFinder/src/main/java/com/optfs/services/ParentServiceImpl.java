@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.repository.ParentRepository;
@@ -55,13 +56,29 @@ public class ParentServiceImpl implements ParentService {
 
 	@Override
 	public String deleteParent(Parent parent) throws NullUserFound {
-Parent p =  getParentById(parent.getId());
-		
+		Parent p =  getParentById(parent.getId());
+		System.out.println("parent: "+parent+ "p:"+p);
 		if(p == null) {
 			throw new NullUserFound("No Parent Exixts with same this id: "+ parent.getId());
 		}
 		parentRepository.delete(p);
 		return "Parent Deleted Successfully";
+	}
+	
+	@Override
+	public Parent loginParent(String email , String password) throws NullUserFound {
+		
+		if(email.equals("")|| email.equals("string")|| password.equals("")|| password.equals("string")) {
+			throw new NullUserFound("Email or Password Cannot be empty");
+		}
+			
+		Parent p =  parentRepository.findParentByEmailPassword(email, password);
+		
+		if(p == null) {
+			throw new NullUserFound("Cant Login Parent Email and Password dont match");
+		}
+		
+		return p;
 	}
 
 }

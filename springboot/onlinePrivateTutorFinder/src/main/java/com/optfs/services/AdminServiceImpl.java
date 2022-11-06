@@ -64,4 +64,21 @@ Admin p =  getAdminById(admin.getId());
 		return "Admin Deleted Successfully";
 	}
 
+	@Override
+	public Admin loginAdmin(String email , String password) throws NullUserFound {
+		
+		if(email.equals("")|| email.equals("string")|| password.equals("")|| password.equals("string")) {
+			throw new NullUserFound("Email or Password Cannot be empty");
+		}
+			
+		Admin a =  adminRepository.findAdminByEmailPassword(email, password);
+		System.out.println("admin:"+a);
+		
+		if(a == null) {
+			throw new NullUserFound("Cant Login User Email and Password dont match");
+		}
+		
+		return a;
+	}
+
 }
