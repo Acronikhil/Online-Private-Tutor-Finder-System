@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(this.email, this.password);
 
+    console.log("Active User in Login:", this.userService.activeUser);
+
+
   }
 
 }

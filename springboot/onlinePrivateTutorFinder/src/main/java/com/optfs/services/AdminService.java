@@ -16,4 +16,6 @@ public interface AdminService {
 	public Admin updateAdmin(Admin admin) throws NullUserFound;
 	
 	public String deleteAdmin(Admin admin) throws NullUserFound;
+	
+	public Admin loginAdmin(String email, String password) throws NullUserFound;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.optfs.entities.Admin;
 import com.optfs.entities.Tutor;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.repository.TutorRepository;
@@ -13,7 +14,7 @@ import com.optfs.repository.TutorRepository;
 public class TutorServiceImpl implements TutorService {
 
 	@Autowired
-	TutorRepository TutorRepository;
+	TutorRepository tutorRepository;
 
 	@Override
 	public Tutor registerTutor(Tutor Tutor) throws NullUserFound {
@@ -26,13 +27,13 @@ public class TutorServiceImpl implements TutorService {
 		{
 			throw new NullUserFound("Error: Null value is not accepted.");
 		}
-		return TutorRepository.save(Tutor);
+		return tutorRepository.save(Tutor);
 	}
 
 	@Override
 	public List<Tutor> getAllTutors() {
 
-		return TutorRepository.findAll();
+		return tutorRepository.findAll();
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class TutorServiceImpl implements TutorService {
 			throw new NullUserFound("Null value is not excepted");
 		}
 
-		return TutorRepository.getTutorById(pid);
+		return tutorRepository.getTutorById(pid);
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class TutorServiceImpl implements TutorService {
 			throw new NullUserFound("No Tutor Exixts with same this id: " + Tutor.getId());
 		}
 
-		return TutorRepository.save(Tutor);
+		return tutorRepository.save(Tutor);
 	}
 
 	@Override
@@ -62,8 +63,24 @@ public class TutorServiceImpl implements TutorService {
 		if (p == null) {
 			throw new NullUserFound("No Tutor Exixts with same this id: " + Tutor.getId());
 		}
-		TutorRepository.delete(p);
+		tutorRepository.delete(p);
 		return "Tutor Deleted Successfully";
+	}
+	
+	@Override
+	public Tutor loginTutor(String email , String password) throws NullUserFound {
+		
+		if(email.equals("")|| email.equals("string")|| password.equals("")|| password.equals("string")) {
+			throw new NullUserFound("Email or Password Cannot be empty");
+		}
+			
+		Tutor t =  tutorRepository.findTutorByEmailPassword(email, password);
+		
+		if(t == null) {
+			throw new NullUserFound("Cant Login tutor Email and Password dont match");
+		}
+		
+		return t;
 	}
 
 }

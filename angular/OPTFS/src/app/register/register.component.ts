@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     console.log(this.user, this.confirmPassword);
 
-    if (this.user.firstName == "" && this.user.lastName == "" && this.user.password == "" && this.user.phoneNo == 0) {
+    if (this.user.firstName == "" && this.user.lastName == "" && this.user.password == "") {
       this.registered = false;
       this.message = "Error Cannot register please fill all fileds properly.";
 

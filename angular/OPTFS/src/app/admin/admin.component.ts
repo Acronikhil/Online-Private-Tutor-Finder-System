@@ -11,51 +11,166 @@ export class AdminComponent implements OnInit {
 
   allUsers: any;
   allTutors: any;
+  allParents: any;
+  allBooks: any;
 
-  userToEdit: any;
+  parentToEdit: any;
+  bookToEdit: any;
+  tutorToEdit: any;
+  bookToAdd: any = {};
+  tutorToAdd: any = {};
 
-
-  manageUser: boolean = true;
+  manageParents: boolean = true;
   manageTutor: boolean = false;
+  manageEbooks: boolean = false;
+  addEbooks: boolean = false;
+  addTTutor: boolean = false;
+
+  toggleEditParent = false;
+  toggleEditTutor = false;
+  toggleEditBook = false;
+  // toggleAddBooks = false;
 
   constructor(private userService: UserService) {
     this.allUsers = this.userService.getAllUsers().subscribe((data) => this.allUsers = data);
-
+    this.allParents = this.userService.getAllParents().subscribe((data) => this.allParents = data);
+    this.allTutors = this.userService.getAllTutors().subscribe((data) => this.allTutors = data);
+    this.allBooks = this.userService.getAllBooks().subscribe((data) => this.allBooks = data);
 
   }
 
-  editMe(user: any) {
-    this.userToEdit = user;
+  editMeParent(user: any) {
+
+    this.toggleEditParent = !this.toggleEditParent;
+
+    this.parentToEdit = user;
+    console.log("----------- User To Edit ------------", user);
+  }
+  editMeBook(user: any) {
+
+    this.toggleEditBook = !this.toggleEditBook;
+
+    this.bookToEdit = user;
+    console.log("----------- User To Edit ------------", user);
+  }
+  editMeTutor(user: any) {
+
+    this.toggleEditTutor = !this.toggleEditTutor;
+
+    this.tutorToEdit = user;
     console.log("----------- User To Edit ------------", user);
   }
 
-  toggleManageUser() {
-    this.manageUser = true;
+  togglemanageParents() {
+    this.manageParents = true;
     this.manageTutor = false;
+    this.manageEbooks = false;
+    this.addEbooks = false;
+    this.addTTutor = false;
   }
 
   toggleManageTutor() {
     this.allTutors = this.userService.getAllTutors().subscribe(data => this.allTutors = data);
     this.manageTutor = true;
-    this.manageUser = false;
+    this.manageParents = false;
+    this.manageEbooks = false;
+    this.addEbooks = false;
+    this.addTTutor = false;
   }
 
-  editUser() {
-    let uId = this.userToEdit.userId;
-    this.userService.deleteUser(uId).subscribe();
+  toggleManageBooks() {
+    this.allBooks = this.userService.getAllBooks().subscribe((data) => this.allBooks = data);
+    this.manageTutor = false;
+    this.manageParents = false;
+    this.addEbooks = false;
+    this.manageEbooks = true;
+    this.addTTutor = false;
   }
 
-  deleteMe() {
-    let uId = this.userToEdit.userId;
-    console.log("Deleting User: ", this.userToEdit.firstName, uId);
+  toggleAddBooks() {
+    this.addEbooks = true;
+    this.manageTutor = false;
+    this.manageParents = false;
+    this.manageEbooks = false;
+    this.addTTutor = false;
 
-    this.userService.deleteUser(uId).subscribe();
+  }
+
+  toggleAddTutor() {
+    this.addEbooks = false;
+    this.manageTutor = false;
+    this.manageParents = false;
+    this.manageEbooks = false;
+    this.addTTutor = true;
+  }
+
+
+
+  updateParent() {
+
+    console.log("Update Parent");
+
+    this.userService.updateParent(this.parentToEdit);
     this.ngOnInit();
+    // window.location.reload();
+  }
+
+  updateTutor() {
+    console.log("Update Tutor");
+
+    this.userService.updateTutor(this.tutorToEdit);
+    this.ngOnInit();
+    // window.location.reload();
+  }
+
+  updateBook() {
+    console.log("Update Book");
+
+    this.userService.updateBook(this.bookToEdit);
+    this.ngOnInit();
+    // window.location.reload();
+  }
+
+  deleteMeParent(user: any) {
+    // this.editMeParent(user);
+    this.userService.deleteParent(user);
+    this.ngOnInit();
+    // window.location.reload();
+  }
+
+  deleteMeBook(user: any) {
+    // this.editMeParent(user);
+    this.userService.deleteBook(user);
+    this.ngOnInit();
+    // window.location.reload();
+  }
+
+  deleteMeTutor(user: any) {
+    // this.editMeParent(user);
+    this.userService.deleteTutor(user);
+    this.ngOnInit();
+    // window.location.reload();
+  }
+
+  addBook() {
+    this.userService.addBook(this.bookToAdd);
+    console.log(this.bookToAdd);
+
+  }
+
+  addTutor() {
+
+    this.userService.addTutors(this.tutorToAdd);
+
   }
 
   ngOnInit(): void {
 
     this.allUsers = this.userService.getAllUsers().subscribe((data) => this.allUsers = data);
+    this.allParents = this.userService.getAllParents().subscribe((data) => this.allParents = data);
+    this.allTutors = this.userService.getAllTutors().subscribe((data) => this.allTutors = data);
+    this.allBooks = this.userService.getAllBooks().subscribe((data) => this.allBooks = data);
+
 
 
 

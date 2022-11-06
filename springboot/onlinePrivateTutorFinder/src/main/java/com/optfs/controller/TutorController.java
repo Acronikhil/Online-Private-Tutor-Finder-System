@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.optfs.entities.Parent;
 import com.optfs.entities.Tutor;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.services.TutorService;
+
+import springfox.documentation.service.CredentialsGrant;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -44,9 +47,17 @@ public class TutorController {
 		return tutorService.updateTutor(tutor);
 	}
 	
-	@DeleteMapping("/deleteUser")
+	@DeleteMapping("/deleteTutor")
 	public String deleteTutor(@RequestBody Tutor tutor) throws NullUserFound {
 		return tutorService.deleteTutor(tutor);
 	}
 	
+	
+	@GetMapping("/loginTutor")
+	public Tutor loginTutor(@RequestBody List<String> credentials) throws NullUserFound
+	{
+		String email = credentials.get(0);
+		String password = credentials.get(1);
+		return tutorService.loginTutor(email, password);
+	}
 }

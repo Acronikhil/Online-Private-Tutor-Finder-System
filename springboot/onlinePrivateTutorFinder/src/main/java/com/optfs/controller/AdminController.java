@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.optfs.entities.Admin;
+import com.optfs.entities.Parent;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.services.AdminService;
 
@@ -44,9 +45,17 @@ public class AdminController {
 		return adminService.updateAdmin(admin);
 	}
 	
-	@DeleteMapping("/deleteUser")
+	@DeleteMapping("/deleteAdmin")
 	public String deleteAdmin(@RequestBody Admin admin) throws NullUserFound {
 		return adminService.deleteAdmin(admin);
+	}
+	
+	@GetMapping("/loginAdmin")
+	public Admin loginAdmin(@RequestBody List<String> credentials) throws NullUserFound
+	{
+		String email = credentials.get(0);
+		String password = credentials.get(1);
+		return adminService.loginAdmin(email, password);
 	}
 	
 }

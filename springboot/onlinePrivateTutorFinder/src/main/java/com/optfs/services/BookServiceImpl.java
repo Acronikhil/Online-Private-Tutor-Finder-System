@@ -17,7 +17,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Books registerBooks(Books book) throws NullUserFound {
-		if (book.getBookName().isBlank()|| book.getAuthorName().isBlank()) {
+		if (book.getBookName().isBlank()|| book.getAuthorName().isEmpty()) {
 			throw new NullUserFound("Error: Null value is not accepted.");
 		}
 		else if (book.getBookName().equals("string") || book.getAuthorName().equals("string") ) {

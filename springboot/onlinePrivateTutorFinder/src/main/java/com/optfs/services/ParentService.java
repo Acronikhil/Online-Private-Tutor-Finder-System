@@ -2,6 +2,7 @@ package com.optfs.services;
 
 import java.util.List;
 
+import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
 import com.optfs.exceptions.NullUserFound;
 
@@ -16,4 +17,7 @@ public interface ParentService {
 	public Parent updateParent(Parent parent) throws NullUserFound;
 	
 	public String deleteParent(Parent parent) throws NullUserFound;
+	
+	public Parent loginParent(String email, String password) throws NullUserFound;
+
 }

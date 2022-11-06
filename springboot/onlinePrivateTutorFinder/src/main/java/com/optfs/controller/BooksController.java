@@ -39,12 +39,12 @@ public class BooksController {
 		return booksService.getAllBookss();
 	}
 	
-	@PostMapping("/updateBooks")
+	@PostMapping("/updateBook")
 	public Books updateBooks(@RequestBody Books books) throws NullUserFound {
 		return booksService.updateBooks(books);
 	}
 	
-	@DeleteMapping("/deleteUser")
+	@DeleteMapping("/deleteBook")
 	public String deleteBooks(@RequestBody Books books) throws NullUserFound {
 		return booksService.deleteBooks(books);
 	}
