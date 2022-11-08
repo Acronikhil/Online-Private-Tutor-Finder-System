@@ -8,6 +8,9 @@ import { UserService } from '../services/user.service';
 })
 export class AdminComponent implements OnInit {
 
+  loggedIn = false;
+  email = "";
+  password = "";
 
   allUsers: any;
   allTutors: any;
@@ -31,7 +34,7 @@ export class AdminComponent implements OnInit {
   toggleEditBook = false;
   // toggleAddBooks = false;
 
-  constructor(private userService: UserService) {
+  constructor(protected userService: UserService) {
     this.allUsers = this.userService.getAllUsers().subscribe((data) => this.allUsers = data);
     this.allParents = this.userService.getAllParents().subscribe((data) => this.allParents = data);
     this.allTutors = this.userService.getAllTutors().subscribe((data) => this.allTutors = data);
@@ -162,6 +165,21 @@ export class AdminComponent implements OnInit {
 
     this.userService.addTutors(this.tutorToAdd);
 
+  }
+
+  loginAdmin() {
+    this.userService.loginAdmin(this.email, this.password);
+
+    console.log("Active Admin :", this.userService.activeUser);
+
+
+    Object.entries(this.userService.activeUser).forEach(([key, value]) => {
+      console.log(key, value);
+      sessionStorage.setItem(key, <string>value);
+
+      this.loggedIn = true;
+
+    });
   }
 
   ngOnInit(): void {

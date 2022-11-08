@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,11 +51,10 @@ public class AdminController {
 		return adminService.deleteAdmin(admin);
 	}
 	
-	@GetMapping("/loginAdmin")
-	public Admin loginAdmin(@RequestBody List<String> credentials) throws NullUserFound
+	@GetMapping("/loginAdmin/{email}/{password}")
+	public Admin loginAdmin(@PathVariable String email, @PathVariable String password ) throws NullUserFound
 	{
-		String email = credentials.get(0);
-		String password = credentials.get(1);
+		
 		return adminService.loginAdmin(email, password);
 	}
 	

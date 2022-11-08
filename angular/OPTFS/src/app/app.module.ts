@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ParentComponent } from './parent/parent.component';
 import { TutorComponent } from './tutor/tutor.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     AdminComponent,
     ParentComponent,
-    TutorComponent
+    TutorComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
