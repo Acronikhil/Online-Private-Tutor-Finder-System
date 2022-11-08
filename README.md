@@ -8,6 +8,7 @@
  now run following command in your command prompt:
    npm i
    nmp start 
+   
    OR USE ng serve --open if you have angular installed
     
 -------- Running springboot Application: -------------
