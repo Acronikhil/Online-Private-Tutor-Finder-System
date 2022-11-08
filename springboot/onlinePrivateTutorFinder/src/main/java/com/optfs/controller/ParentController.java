@@ -2,10 +2,13 @@ package com.optfs.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,11 +52,9 @@ public class ParentController {
 		return parentService.deleteParent(parent);
 	}
 	
-	@GetMapping("/loginParent")
-	public Parent loginParent(@RequestBody List<String> credentials) throws NullUserFound
+	@GetMapping("/loginParent/{email}/{password}")
+	public Parent loginParent(@PathVariable String email, @PathVariable String password) throws NullUserFound
 	{
-		String email = credentials.get(0);
-		String password = credentials.get(1);
 		return parentService.loginParent(email, password);
 	}
 }

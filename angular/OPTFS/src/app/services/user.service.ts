@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { WrappedNodeExpr } from '@angular/compiler';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -149,18 +149,58 @@ export class UserService {
   // Login Sevice
 
 
-  loginUser(email: String, password: String) {
-    let httpResponse = 0;
-    let credentials = [email, password];
+  loginUser(email: string | number | boolean, password: string | number | boolean) {
 
+    let credentials = new HttpParams;
+    credentials.append("email", email);
+    credentials.append("password", password);
+    this.http.get(`${this.linkHeader}${this.parnetHeader}loginParent/${email}/${password}`,).subscribe((data) => {
+      console.log(data);
+      this.activeUser = data;
 
-    this.ngOnInit();
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(error);
 
+      }
+    )
+  }
 
-    console.log("++++++++++", this.allUsers);
+  loginAdmin(email: string | number | boolean, password: string | number | boolean) {
 
+    let credentials = new HttpParams;
+    credentials.append("email", email);
+    credentials.append("password", password);
+    this.http.get(`${this.linkHeader}${this.adminHeader}loginAdmin/${email}/${password}`,).subscribe((data) => {
+      console.log(data);
+      this.activeUser = data;
 
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(error);
 
+      }
+    )
+  }
+
+  loginTutor(email: string | number | boolean, password: string | number | boolean) {
+
+    let credentials = new HttpParams;
+    credentials.append("email", email);
+    credentials.append("password", password);
+    this.http.get(`${this.linkHeader}${this.tutorHeader}loginTutor/${email}/${password}`,).subscribe((data) => {
+      console.log(data);
+      this.activeUser = data;
+
+    },
+      (error) => {
+        this.errorMessage = error;
+        console.log(error);
+
+      }
+    )
   }
 
 
@@ -234,11 +274,46 @@ export class UserService {
   }
 
 
+  // Parent FUNCTIONALITIES
+
+  requestDemo(tId: number, pId: number) {
+    this.http.get(`http://localhost:8089/demoReq/getDemoRequests/${pId}/${tId}`).subscribe();
+  }
+
+  bookTutor(tid: number, pid: number) {
+    this.http.get(`http://localhost:8089/bookTutor/sendBookingRequest/${tid}/${pid}`).subscribe();
+  }
+
+  getDemoReqBYTID(tid: number) {
+    return this.http.get(`${this.linkHeader}demoReq/getDemoRequestsByTID/${tid}`);
+  }
+
+  getBookingRequests(tid: number) {
+    return this.http.get(`${this.linkHeader}bookTutor/getBookingsBTID/${tid}`);
+  }
+
+  updateBooking(d: any) {
+    console.log("(())D:", d);
+    this.http.get(`http://localhost:8089/bookTutor/updateData/${d}`).subscribe();
+  }
+
+  updateDemo(d: any) {
+    console.log("(())D:", d);
+
+    this.http.get(`${this.linkHeader}demoReq/updateReq/${d}`,).subscribe();
+    // /demoReq/updateReq/{d}
+  }
+
+  deleteDemo(d: any) {
 
 
+    this.http.delete(`${this.linkHeader}demoReq/deleteReq`, { body: d }).subscribe();
+  }
 
 
-
+  deleteBooking(d: any) {
+    this.http.delete(`${this.linkHeader}bookTutor/deleteData`, { body: d }).subscribe();
+  }
 }
 
 

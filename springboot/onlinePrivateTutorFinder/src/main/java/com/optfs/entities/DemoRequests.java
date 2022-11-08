@@ -16,27 +16,26 @@ public class DemoRequests {
 	@GeneratedValue
 	private Integer demoId;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Parent parent;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Tutor tutor;
+	
+	private boolean accepted = false;
 
 	public DemoRequests() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	public DemoRequests(Integer demoId, Parent parent, Tutor tutor) {
+	public DemoRequests(Integer demoId, Parent parent, Tutor tutor, boolean accepted) {
 		super();
 		this.demoId = demoId;
 		this.parent = parent;
 		this.tutor = tutor;
+		this.accepted = accepted;
 	}
-
-
 
 	public Integer getDemoId() {
 		return demoId;
@@ -53,8 +52,6 @@ public class DemoRequests {
 	public void setParent(Parent parent) {
 		this.parent = parent;
 	}
-	
-	
 
 	public Tutor getTutor() {
 		return tutor;
@@ -64,12 +61,21 @@ public class DemoRequests {
 		this.tutor = tutor;
 	}
 
+	public boolean isAccepted() {
+		return accepted;
+	}
 
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
 
 	@Override
 	public String toString() {
-		return "DemoRequests [demoId=" + demoId + ", parent=" + parent + ", tutor=" + tutor + "]";
+		return "DemoRequests [demoId=" + demoId + ", parent=" + parent + ", tutor=" + tutor + ", accepted=" + accepted
+				+ "]";
 	}
+
+	
 
 	
 

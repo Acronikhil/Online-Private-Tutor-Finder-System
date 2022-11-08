@@ -27,6 +27,13 @@ export class LoginComponent implements OnInit {
     console.log("Active User in Login:", this.userService.activeUser);
 
 
+    Object.entries(this.userService.activeUser).forEach(([key, value]) => {
+      console.log(key, value);
+      sessionStorage.setItem(key, <string>value);
+
+    })
+
+
   }
 
 }
