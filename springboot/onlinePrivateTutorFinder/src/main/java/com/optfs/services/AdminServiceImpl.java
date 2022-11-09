@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.optfs.entities.Admin;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.repository.AdminRepository;
 
@@ -16,8 +17,12 @@ public class AdminServiceImpl implements AdminService {
 	AdminRepository adminRepository;
 
 	@Override
-	public Admin registerAdmin(Admin admin) throws NullUserFound {
-		if (admin.getFirstName().isEmpty() || admin.getLastName().isEmpty() || admin.getEmail().isEmpty()
+	public Admin registerAdmin(Admin admin) throws NullUserFound, NullEmailFoundException {
+		
+		if(admin.getEmail() == "" || admin.getEmail() == null) {
+			throw new NullEmailFoundException("Email cannot be null");
+		}
+		else if (admin.getFirstName().isEmpty() || admin.getLastName().isEmpty() || admin.getEmail().isEmpty()
 				|| admin.getPassword().isEmpty()) {
 			throw new NullUserFound("Error: Null value is not accepted.");
 		}

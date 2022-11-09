@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 
 public interface ParentService {
 	
-	public Parent registerParent(Parent parent) throws NullUserFound;
+	public Parent registerParent(Parent parent) throws NullUserFound, NullEmailFoundException;
 	
 	public List<Parent> getAllParents();
 	

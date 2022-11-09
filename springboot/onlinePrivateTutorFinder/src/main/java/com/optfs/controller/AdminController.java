@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.services.AdminService;
 
@@ -32,7 +33,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/registerAdmin")
-	public Admin registerAdmin(@RequestBody Admin admin) throws NullUserFound {
+	public Admin registerAdmin(@RequestBody Admin admin) throws NullUserFound, NullEmailFoundException {
 		return adminService.registerAdmin(admin);
 	}
 	

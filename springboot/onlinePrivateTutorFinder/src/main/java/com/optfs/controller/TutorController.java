@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.optfs.entities.Parent;
 import com.optfs.entities.Tutor;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.services.TutorService;
 
@@ -34,7 +35,7 @@ public class TutorController {
 	}
 	
 	@PostMapping("/registerTutor")
-	public Tutor registerTutor(@RequestBody Tutor tutor) throws NullUserFound {
+	public Tutor registerTutor(@RequestBody Tutor tutor) throws NullUserFound, NullEmailFoundException {
 		return tutorService.registerTutor(tutor);
 	}
 	

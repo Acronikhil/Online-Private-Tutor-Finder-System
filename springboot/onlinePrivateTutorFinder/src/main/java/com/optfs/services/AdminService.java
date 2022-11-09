@@ -3,11 +3,12 @@ package com.optfs.services;
 import java.util.List;
 
 import com.optfs.entities.Admin;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 
 public interface AdminService {
 	
-	public Admin registerAdmin(Admin admin) throws NullUserFound;
+	public Admin registerAdmin(Admin admin) throws NullUserFound, NullEmailFoundException;
 	
 	public List<Admin> getAllAdmins();
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.optfs.entities.Admin;
 import com.optfs.entities.Tutor;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.repository.TutorRepository;
 
@@ -17,8 +18,12 @@ public class TutorServiceImpl implements TutorService {
 	TutorRepository tutorRepository;
 
 	@Override
-	public Tutor registerTutor(Tutor Tutor) throws NullUserFound {
-		if (Tutor.getFirstName().isEmpty() || Tutor.getLastName().isEmpty() || Tutor.getEmail().isEmpty()
+	public Tutor registerTutor(Tutor Tutor) throws NullUserFound, NullEmailFoundException {
+	
+		if(Tutor.getEmail() == "" || Tutor.getEmail() == null) {
+			throw new NullEmailFoundException("Email cannot be null");
+		}
+		else if (Tutor.getFirstName().isEmpty() || Tutor.getLastName().isEmpty() || Tutor.getEmail().isEmpty()
 				|| Tutor.getPassword().isEmpty()) {
 			throw new NullUserFound("Error: Null value is not accepted.");
 		} else if (Tutor.getFirstName().equals("string") || Tutor.getLastName().equals("string")

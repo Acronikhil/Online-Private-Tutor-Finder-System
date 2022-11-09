@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.repository.ParentRepository;
 
@@ -17,8 +18,14 @@ public class ParentServiceImpl implements ParentService {
 	ParentRepository parentRepository;
 
 	@Override
-	public Parent registerParent(Parent parent) throws NullUserFound {
-		if (parent.getFirstName().isEmpty() || parent.getLastName().isEmpty() || parent.getEmail().isEmpty()
+	public Parent registerParent(Parent parent) throws NullUserFound, NullEmailFoundException {
+		
+		
+		if(parent.getEmail() == null || parent.getEmail() == "") {
+			throw new NullEmailFoundException("Email id cannot be null");
+		}
+		
+	else if (parent.getFirstName().isEmpty() || parent.getLastName().isEmpty() || parent.getEmail().isEmpty()
 				|| parent.getPassword().isEmpty()) {
 			throw new NullUserFound("Error: Null value is not accepted.");
 		}

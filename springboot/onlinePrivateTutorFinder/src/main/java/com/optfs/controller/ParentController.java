@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.optfs.entities.Parent;
+import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
 import com.optfs.services.ParentService;
 
@@ -33,7 +34,7 @@ public class ParentController {
 	}
 	
 	@PostMapping("/registerParent")
-	public Parent registerParent(@RequestBody Parent parent) throws NullUserFound {
+	public Parent registerParent(@RequestBody Parent parent) throws NullUserFound, NullEmailFoundException {
 		return parentService.registerParent(parent);
 	}
 	
