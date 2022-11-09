@@ -4,7 +4,7 @@
 
     <section *ngIf="!loggedIn" class="vh-100 my-5 py-5">
         <div class="container-fluid h-custom">
-            {{userService.errorMessage}}
+            {{userService.errorMessage.body}}
             <h1 class="text-center mb-lg-5">Login Parent</h1>
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-md-9 col-lg-6 col-xl-5">
