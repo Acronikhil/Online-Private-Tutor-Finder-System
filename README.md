@@ -15,7 +15,7 @@
 
 Requirements: Java 8 or +version , Eclipse/Intellij IDE , gradle, postgreSQL 
 
-  Open Eclipse and click on file/import/general/projects from folder or archive and import project.
+  Open Eclipse and click on file/import/general/projects from folder or archive and import project from location Online-Private-Tutor-Finder-System/springboot/onlinePrivateTutorFinder/
   
   Now right click on project name and go to configure click on Add Gradle Nature. If not showing then go on gradle and click on refresh gradle project
   
