@@ -14,9 +14,9 @@ public interface DemoRequestService {
 	
 	public List<DemoRequests> getDemoRequestsByParentId(Integer pId)throws NullValuesFoundException;
 
-	public DemoRequests updateDemoRequest(Integer d); 
+	public DemoRequests updateDemoRequest(Integer d) throws NullValuesFoundException; 
 	
-	public void deleteDemoRequest(DemoRequests d); 
+	public void deleteDemoRequest(DemoRequests d) throws NullValuesFoundException; 
 	
 	
 

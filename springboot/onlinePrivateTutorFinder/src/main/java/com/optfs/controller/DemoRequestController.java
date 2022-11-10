@@ -57,12 +57,12 @@ public class DemoRequestController {
 	}
 	
 	@GetMapping("/updateReq/{d}")
-	public DemoRequests updateDemo(@PathVariable Integer d) {
+	public DemoRequests updateDemo(@PathVariable Integer d) throws NullValuesFoundException{
 		return demoService.updateDemoRequest(d);
 	}
 	
 	@DeleteMapping("/deleteReq")
-	public void deleteDemo(@RequestBody DemoRequests d) {
-		 demoService.deleteDemoRequest(d);
+	public void deleteDemo(@RequestBody DemoRequests d) throws NullValuesFoundException{
+		demoService.deleteDemoRequest(d);
 	}
 }
