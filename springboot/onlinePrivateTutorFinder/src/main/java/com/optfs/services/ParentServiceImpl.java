@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.optfs.entities.Admin;
 import com.optfs.entities.Parent;
 import com.optfs.exceptions.NullEmailFoundException;
 import com.optfs.exceptions.NullUserFound;
@@ -64,7 +63,7 @@ public class ParentServiceImpl implements ParentService {
 	@Override
 	public String deleteParent(Parent parent) throws NullUserFound {
 		Parent p =  getParentById(parent.getId());
-		System.out.println("parent: "+parent+ "p:"+p);
+		System.out.println("parent: " + parent+ "p:"+p);
 		if(p == null) {
 			throw new NullUserFound("No Parent Exixts with same this id: "+ parent.getId());
 		}

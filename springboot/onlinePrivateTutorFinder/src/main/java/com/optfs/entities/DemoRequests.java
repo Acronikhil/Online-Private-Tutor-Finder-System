@@ -26,7 +26,6 @@ public class DemoRequests {
 
 	public DemoRequests() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public DemoRequests(Integer demoId, Parent parent, Tutor tutor, boolean accepted) {

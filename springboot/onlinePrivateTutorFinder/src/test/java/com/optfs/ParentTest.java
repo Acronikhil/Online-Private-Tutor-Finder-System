@@ -20,9 +20,7 @@ class ParentTest {
 	
 	@Autowired
 	ParentService parentService;
-	
-	
-	
+		
 	@Test
 	void saveParentWithNoEmail() throws NullEmailFoundException {
 		Parent p = new Parent(001,"Test","User","","pass@123");
