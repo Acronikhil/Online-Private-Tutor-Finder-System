@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class DemoRequestController {
 	@Autowired
 	TutorService tService;
 	
-	@GetMapping("/getDemoRequests/{pid}/{tid}")
+	@PostMapping("/getDemoRequests/{pid}/{tid}")
 	public DemoRequests addDemoRequest(@PathVariable Integer pid, @PathVariable Integer tid) throws NullUserFound, NullValuesFoundException {
 		DemoRequests d = new DemoRequests();
 		Tutor tutor = tService.getTutorById(tid);
@@ -56,7 +57,7 @@ public class DemoRequestController {
 		return demoService.getDemoRequestsByTutorId(tid);
 	}
 	
-	@GetMapping("/updateReq/{d}")
+	@PostMapping("/updateReq/{d}")
 	public DemoRequests updateDemo(@PathVariable Integer d) throws NullValuesFoundException{
 		return demoService.updateDemoRequest(d);
 	}
